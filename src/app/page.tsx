@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1 className="text-pink-500">Instagram</h1>;
+  return <div className="text-gray-900">Home</div>;
 }
