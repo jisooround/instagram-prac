@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import AuthContext from "@/context/AuthContext";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -17,10 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={openSans.className}>
       <body className="w-full overflow-auto mx-auto">
-        <header className="sticky top-0 bg-white z-10 border-b">
-          <Navbar />
-        </header>
-        {children}
+        <AuthContext>
+          {/* AuthContext로 감싸주었기 때문에 이 하위 요소들에서 useSession기능을 사용할 수 있다. */}
+          <header className="sticky top-0 bg-white z-10 border-b">
+            <Navbar />
+          </header>
+          <main>{children}</main>
+        </AuthContext>
       </body>
     </html>
   );

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React from "react";
-import { SlHome, SlMagnifier, SlPlus } from "react-icons/sl";
 import HomeFillIcon from "./ui/icons/HomeFillIcon";
 import HomeIcon from "./ui/icons/HomeFillIcon";
 import NewFillIcon from "./ui/icons/NewFillIcon";
@@ -11,6 +10,7 @@ import SearchFillIcon from "./ui/icons/SearchFillIcon";
 import SearchIcon from "./ui/icons/SearchIcon";
 import { usePathname } from "next/navigation";
 import ColorButton from "./ui/ColorButton";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 type Props = {};
 
@@ -19,7 +19,7 @@ const Navbar = (props: Props) => {
     {
       href: "/",
       icon: <HomeIcon />,
-      clickedIcon: <HomeIcon />,
+      clickedIcon: <HomeFillIcon />,
     },
     {
       href: "/search",
@@ -34,6 +34,8 @@ const Navbar = (props: Props) => {
   ];
   const pathName = usePathname();
   console.log(pathName);
+
+  const { data: session } = useSession();
   return (
     <div className="w-full h-20 bg-gray-100 flex items-center justify-between px-10">
       <Link href="/">
@@ -44,11 +46,16 @@ const Navbar = (props: Props) => {
           {menu.map((item) => (
             <li key={item.href} className="flex items-center">
               <Link href={item.href}>
-                {pathName === item.href ? item.icon : item.icon}
+                {pathName === item.href ? item.clickedIcon : item.icon}
               </Link>
             </li>
           ))}
-          <ColorButton text="Sign In" onClick={() => {}} />
+          {session ? (
+            <ColorButton text="Sign Out" onClick={() => signOut()} />
+          ) : (
+            // 여기서 사용하는 signOut(), signIn() 함수는 sessionProvider에서 제공해주는 것
+            <ColorButton text="Sign In" onClick={() => signIn()} />
+          )}
         </ul>
       </nav>
     </div>
