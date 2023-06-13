@@ -1,10 +1,19 @@
+import { NodeNextRequest } from "next/dist/server/base-http/node";
 import React from "react";
 
-type Props = { image?: string | null };
+type Props = {
+  image?: string | null;
+  size?: "small" | "normal";
+  hightlight?: boolean;
+};
 
-export default function Avatar({ image }: Props) {
+export default function Avatar({
+  image,
+  size = "small",
+  hightlight = false,
+}: Props) {
   return (
-    <div className="rounded-full w-10 h-10 border-solid border-orange-500 border-[1px] mr-3">
+    <div className={getContainerStyle(size, hightlight)}>
       {/*eslint-disable-next-line @next/next/no-img-element*/}
       <img
         className="rounded-full"
@@ -15,4 +24,14 @@ export default function Avatar({ image }: Props) {
       />
     </div>
   );
+}
+
+function getContainerStyle(size: string, hightlight: boolean): string {
+  const baseStyle = "rounded-full"; // w-10 h-10
+  const highlightStyle = hightlight
+    ? "border-solid border-orange-500 border-[1px]"
+    : "";
+  const sizeStyle = size === "small" ? "w-10 h-10" : "w-[68px] h-[68px]";
+
+  return `${baseStyle} ${highlightStyle} ${sizeStyle}`;
 }

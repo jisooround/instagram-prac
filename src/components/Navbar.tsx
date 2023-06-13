@@ -40,7 +40,7 @@ const Navbar = (props: Props) => {
   const user = session?.user;
 
   return (
-    <div className="w-full h-20 bg-gray-100 flex items-center justify-between px-10">
+    <div className="w-full h-20 bg-gray-100 flex items-center justify-between px-[100px]">
       <Link href="/">
         <div className="text-2xl font-bold text-orange-500">mudigram</div>
       </Link>
@@ -56,7 +56,7 @@ const Navbar = (props: Props) => {
           {user && (
             <li>
               <Link href={`/user/${user.username}`}>
-                <Avatar image={user.image} />
+                <Avatar image={user.image} size="small" hightlight />
               </Link>
             </li>
           )}
