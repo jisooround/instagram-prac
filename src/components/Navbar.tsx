@@ -11,6 +11,7 @@ import SearchIcon from "./ui/icons/SearchIcon";
 import { usePathname } from "next/navigation";
 import ColorButton from "./ui/ColorButton";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Avatar from "./Avatar";
 
 type Props = {};
 
@@ -36,6 +37,8 @@ const Navbar = (props: Props) => {
   console.log(pathName);
 
   const { data: session } = useSession();
+  const user = session?.user;
+
   return (
     <div className="w-full h-20 bg-gray-100 flex items-center justify-between px-10">
       <Link href="/">
@@ -50,12 +53,25 @@ const Navbar = (props: Props) => {
               </Link>
             </li>
           ))}
-          {session ? (
-            <ColorButton text="Sign Out" onClick={() => signOut()} />
-          ) : (
-            // 여기서 사용하는 signOut(), signIn() 함수는 sessionProvider에서 제공해주는 것
-            <ColorButton text="Sign In" onClick={() => signIn()} />
+          {user && (
+            <li>
+              <Link href={`/user/${user.username}`}>
+                <Avatar image={user.image} />
+              </Link>
+            </li>
           )}
+          <li>
+            {session ? (
+              <ColorButton text="Sign Out" onClick={() => signOut()} />
+            ) : (
+              // 여기서 사용하는 signOut(), signIn() 함수는 sessionProvider에서 제공해주는 것
+              <ColorButton
+                text="Sign In"
+                onClick={() => signIn()}
+                size={"small"}
+              />
+            )}
+          </li>
         </ul>
       </nav>
     </div>
