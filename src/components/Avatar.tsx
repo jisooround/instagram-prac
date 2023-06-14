@@ -16,7 +16,7 @@ export default function Avatar({
     <div className={getContainerStyle(size, hightlight)}>
       {/*eslint-disable-next-line @next/next/no-img-element*/}
       <img
-        className="rounded-full"
+        className="rounded-full object-cover"
         alt="user profile"
         src={image ?? undefined}
         referrerPolicy="no-referrer"
@@ -27,7 +27,8 @@ export default function Avatar({
 }
 
 function getContainerStyle(size: string, hightlight: boolean): string {
-  const baseStyle = "rounded-full"; // w-10 h-10
+  const baseStyle =
+    "rounded-full flex justify-center items-center overflow-hidden"; // w-10 h-10
   const highlightStyle = hightlight
     ? "border-solid border-orange-500 border-[1px]"
     : "";
