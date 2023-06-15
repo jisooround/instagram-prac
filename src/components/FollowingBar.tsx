@@ -29,9 +29,13 @@ export default function FollowingBar() {
   // 4. 여기에서, 클라이언트 컴포넌트에서 followings의 정보를 UI에 보여줌
 
   return (
-    <section className=" w-full h-28 mx-6 rounded-xl shadow-lg shadow-gray-300 flex items-center px-9 overflow-x-scroll">
+    <section className=" w-full h-28 mx-6 rounded-xl shadow-lg shadow-gray-300 flex items-center px-4 overflow-x-auto">
       {isLoading ? (
-        <BeatLoader size={8} color="orange" />
+        <BeatLoader
+          className="w-full flex justify-center"
+          size={8}
+          color="orange"
+        />
       ) : (
         (!users || users.length === 0) && (
           <p className="w-full font-bold text-orange-500 text-xl text-center">{`You don't have followings. 😅`}</p>
