@@ -5,6 +5,7 @@ import React from "react";
 import { BeatLoader } from "react-spinners";
 import useSWR from "swr";
 import Avatar from "./Avatar";
+import ScrollableBar from "./ui/ScrollableBar";
 
 export default function FollowingBar() {
   const { data, isLoading, error } = useSWR<DetailUser>("/api/me");
@@ -29,7 +30,7 @@ export default function FollowingBar() {
   // 4. 여기에서, 클라이언트 컴포넌트에서 followings의 정보를 UI에 보여줌
 
   return (
-    <section className=" w-full h-28 mx-6 rounded-xl shadow-lg shadow-gray-300 flex items-center px-4 overflow-x-auto">
+    <section className=" w-full h-28 mx-6 rounded-xl shadow-lg shadow-gray-300 flex items-center px-5 overflow-x-auto">
       {isLoading ? (
         <BeatLoader
           className="w-full flex justify-center"
@@ -42,21 +43,20 @@ export default function FollowingBar() {
         )
       )}
       {users && users.length > 0 && (
-        <ul className="flex gap-7">
+        <ScrollableBar>
           {users.map(({ image, username }, idx) => (
-            <li key={idx}>
-              <Link
-                href={`/user/${username}`}
-                className="w-[68px] flex flex-wrap justify-center"
-              >
-                <Avatar image={image} size="normal" hightlight />
-                <p className="pt-1 text-sm text-ellipsis overflow-hidden">
-                  {username}
-                </p>
-              </Link>
-            </li>
+            <Link
+              key={idx}
+              href={`/user/${username}`}
+              className="w-[68px] flex flex-wrap justify-center mx-auto"
+            >
+              <Avatar image={image} size="normal" hightlight />
+              <p className="pt-1 text-sm text-ellipsis overflow-hidden">
+                {username}
+              </p>
+            </Link>
           ))}
-        </ul>
+        </ScrollableBar>
       )}
     </section>
   );
