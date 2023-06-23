@@ -1,6 +1,5 @@
 "use client";
 import { SimplePost } from "@/model/post";
-import postcss from "postcss";
 import React from "react";
 import { GridLoader } from "react-spinners";
 import useSWR from "swr";
