@@ -30,7 +30,7 @@ export default function FollowingBar() {
   // 4. 여기에서, 클라이언트 컴포넌트에서 followings의 정보를 UI에 보여줌
 
   return (
-    <section className=" w-full h-28 mx-6 rounded-xl shadow-lg shadow-gray-300 flex items-center px-5 overflow-x-auto">
+    <section className="w-full h-28 mx-6 rounded-xl shadow-lg shadow-gray-300 flex items-center px-5 overflow-x-auto">
       {isLoading ? (
         <BeatLoader
           className="w-full flex justify-center"

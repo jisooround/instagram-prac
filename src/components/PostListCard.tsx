@@ -14,7 +14,7 @@ type Props = {
 export default function PostListCard({ post }: Props) {
   const { userImage, username, image, createdAt, likes, text } = post;
   return (
-    <>
+    <article className="rounded-lg shadow-md border border-gray-200">
       <div>
         <Avatar image={userImage} hightlight />
         <span>{username}</span>
@@ -22,8 +22,8 @@ export default function PostListCard({ post }: Props) {
       <Image
         src={`${image}`}
         alt={`photo by ${username}`}
-        width={500}
-        height={500}
+        width={1000}
+        height={1000}
       />
       <div>
         <HeartIcon />
@@ -38,8 +38,9 @@ export default function PostListCard({ post }: Props) {
         <form>
           <SmileIcon />
           <input type="text" placeholder="Add a comment..." />
+          <button>Post</button>
         </form>
       </div>
-    </>
+    </article>
   );
 }

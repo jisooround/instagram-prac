@@ -10,7 +10,7 @@ export default function PostList() {
     useSWR<SimplePost[]>("/api/posts");
   console.log("data :::  ", posts);
   return (
-    <section>
+    <section className="w-full mx-6">
       {loading && (
         <div>
           <GridLoader color="orange" />
