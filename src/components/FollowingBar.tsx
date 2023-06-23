@@ -10,8 +10,8 @@ import ScrollableBar from "./ui/ScrollableBar";
 export default function FollowingBar() {
   const { data, isLoading, error } = useSWR<DetailUser>("/api/me");
   // 리액트쿼리와 상당히 비슷하다.
-  console.log(isLoading);
-  console.log(data);
+  // console.log(isLoading);
+  // console.log(data);
   // const users = data?.following;
   const users = data?.following && [
     ...data?.following,
