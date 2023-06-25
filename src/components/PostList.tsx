@@ -12,7 +12,7 @@ export default function PostList() {
   return (
     <section className="w-full mx-6">
       {loading && (
-        <div>
+        <div className="w-full flex justify-center">
           <GridLoader color="orange" />
         </div>
       )}
