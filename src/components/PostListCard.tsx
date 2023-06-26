@@ -14,10 +14,10 @@ type Props = {
 export default function PostListCard({ post }: Props) {
   const { userImage, username, image, createdAt, likes, text } = post;
   return (
-    <article className="rounded-lg shadow-md border border-gray-200">
-      <div>
-        <Avatar image={userImage} hightlight />
-        <span>{username}</span>
+    <article className="rounded-lg shadow-md border border-gray-200 my-10">
+      <div className="flex items-center p-2">
+        <Avatar image={userImage} hightlight size="small" />
+        <span className="text-gray-900 font-bold ml-2">{username}</span>
       </div>
       <Image
         src={`${image}`}

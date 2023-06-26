@@ -1,9 +1,11 @@
 import { NodeNextRequest } from "next/dist/server/base-http/node";
 import React from "react";
 
+type AvatarSize = "small" | "medium" | "large";
+
 type Props = {
   image?: string | null;
-  size?: "small" | "normal";
+  size?: AvatarSize;
   hightlight?: boolean;
 };
 
@@ -16,7 +18,7 @@ export default function Avatar({
     <div className={getContainerStyle(size, hightlight)}>
       {/*eslint-disable-next-line @next/next/no-img-element*/}
       <img
-        className="rounded-full object-cover"
+        className={`object-cover rounded-fit  ${getImageSizeStyle(size)}`}
         alt="user profile"
         src={image ?? undefined}
         referrerPolicy="no-referrer"
@@ -26,13 +28,37 @@ export default function Avatar({
   );
 }
 
-function getContainerStyle(size: string, hightlight: boolean): string {
+function getContainerStyle(size: AvatarSize, hightlight: boolean): string {
   const baseStyle =
     "rounded-full flex justify-center items-center overflow-hidden"; // w-10 h-10
   const highlightStyle = hightlight
     ? "border-solid border-orange-500 border-[1px]"
     : "";
-  const sizeStyle = size === "small" ? "w-10 h-10" : "w-[68px] h-[68px]";
+  const sizeStyle = getContainerSize(size);
 
   return `${baseStyle} ${highlightStyle} ${sizeStyle}`;
+}
+
+function getContainerSize(size: AvatarSize): string {
+  // size === "small" ? "w-10 h-10" : "w-[68px] h-[68px]";
+  switch (size) {
+    case "small":
+      return '"w-10 h-10';
+    case "medium":
+      return "w-[42px] h-[42px]";
+    case "large":
+      return "w-[68px] h-[68px]";
+  }
+}
+
+function getImageSizeStyle(size: AvatarSize): string {
+  // size === "small" ? "w-10 h-10" : "w-[68px] h-[68px]";
+  switch (size) {
+    case "small":
+      return '"w-[34px] h-[34px]';
+    case "medium":
+      return "w-[42px] h-[42px]";
+    case "large":
+      return "w-16 h-16";
+  }
 }
