@@ -28,6 +28,8 @@ export default function RootLayout({
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
         </AuthContext>
+        <div id="portal" />
+        {/* portal 노드 생성 */}
       </body>
     </html>
   );

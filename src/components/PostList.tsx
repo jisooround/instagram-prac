@@ -1,9 +1,9 @@
 "use client";
 import { SimplePost } from "@/model/post";
 import React from "react";
-import { GridLoader } from "react-spinners";
 import useSWR from "swr";
 import PostListCard from "./PostListCard";
+import GridSpinner from "./GridSpinner";
 
 export default function PostList() {
   const { data: posts, isLoading: loading } =
@@ -12,16 +12,16 @@ export default function PostList() {
   return (
     <section className="w-full mx-6">
       {loading && (
-        <div className="w-full flex justify-center">
-          <GridLoader color="orange" />
+        <div className="text-center mt-32">
+          <GridSpinner />
         </div>
       )}
       {posts && (
         <ul className="w-full">
           {posts &&
-            posts.map((post) => (
+            posts.map((post, idx) => (
               <li key={post.id}>
-                <PostListCard post={post} />
+                <PostListCard post={post} priority={idx < 2} />
               </li>
             ))}
         </ul>
