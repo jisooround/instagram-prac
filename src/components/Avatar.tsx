@@ -1,4 +1,3 @@
-import { NodeNextRequest } from "next/dist/server/base-http/node";
 import React from "react";
 
 type AvatarSize = "small" | "medium" | "large";
@@ -18,7 +17,7 @@ export default function Avatar({
     <div className={getContainerStyle(size, hightlight)}>
       {/*eslint-disable-next-line @next/next/no-img-element*/}
       <img
-        className={`object-cover rounded-fit  ${getImageSizeStyle(size)}`}
+        className={`object-cover rounded-full  ${getImageSizeStyle(size)}`}
         alt="user profile"
         src={image ?? undefined}
         referrerPolicy="no-referrer"
@@ -43,9 +42,9 @@ function getContainerSize(size: AvatarSize): string {
   // size === "small" ? "w-10 h-10" : "w-[68px] h-[68px]";
   switch (size) {
     case "small":
-      return '"w-10 h-10';
+      return '"w-9 h-9';
     case "medium":
-      return "w-[42px] h-[42px]";
+      return "w-11 h-11";
     case "large":
       return "w-[68px] h-[68px]";
   }
