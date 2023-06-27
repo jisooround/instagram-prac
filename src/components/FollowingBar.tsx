@@ -50,7 +50,7 @@ export default function FollowingBar() {
               href={`/user/${username}`}
               className="w-[68px] flex flex-wrap justify-center mx-auto"
             >
-              <Avatar image={image} size="normal" hightlight />
+              <Avatar image={image} size="large" hightlight />
               <p className="pt-1 text-sm text-ellipsis overflow-hidden">
                 {username}
               </p>
